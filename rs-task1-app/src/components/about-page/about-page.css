@@ -1,0 +1,63 @@
+:root {
+  --transparent: rgb(196 196 196 / 0%);
+}
+#About {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #322727;
+  border-radius: 4px;
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
+  color: #fff;
+}
+.social-list {
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 10px;
+  color: #fff;
+}
+.social-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background-color: #fff;
+}
+.social-item {
+  display: flex;
+}
+.social-item:hover a {
+  transform: scale(1.05);
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+.social-item:hover .social-icon {
+  transform: scale(1.05);
+  transition: 0.5s;
+}
+
+.social-link {
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+.telegram {
+  background: var(--transparent) url(../../assets/tg.svg) no-repeat center;
+  background-size: contain;
+}
+.github {
+  background: var(--transparent) url(../../assets/github.svg) no-repeat center;
+  background-size: contain;
+}
+
+.discord {
+  background: var(--transparent) url(../../assets/discord.svg) no-repeat center;
+  background-size: contain;
+}
+
+.inst {
+  background: var(--transparent) url(../../assets/inst.svg) no-repeat center;
+  background-size: contain;
+}

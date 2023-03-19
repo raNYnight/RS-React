@@ -1,0 +1,30 @@
+.header {
+  margin-top: 10px;
+  background-color: #322727;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 4px;
+}
+.header-list {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+.header-button:disabled {
+  background-color: antiquewhite;
+  color: #000;
+}
+.header-link {
+  color: white;
+  margin: 0 20px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.header-link:hover {
+  color: #d9d9d9;
+}
