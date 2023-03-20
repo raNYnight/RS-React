@@ -32,14 +32,7 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto",
-        "semi": true,
-        "singleQuote": true,
-        "tabWidth": 2,
-        "trailingComma": "es5",
-        "printWidth": 100,
-        "arrowParens": "always",
-        "singleAttributePerLine": true
+        "endOfLine": "auto"
       }
     ],
     "@typescript-eslint/no-empty-interface": 0,
