@@ -6,18 +6,12 @@ function Header() {
     <div className="header">
       <ul className="header-list">
         <li>
-          <NavLink
-            className="header-button"
-            to={"/"}
-          >
+          <NavLink className="header-button" to={"/"}>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink
-            className="header-button"
-            to={"/about"}
-          >
+          <NavLink className="header-button" to={"/about"}>
             About Us
           </NavLink>
         </li>

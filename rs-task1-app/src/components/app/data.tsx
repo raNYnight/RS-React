@@ -8,7 +8,8 @@ const data: EmployeeData[] = [
     email: "johnyfe@gmail.com",
     phone: 375297743213,
     promotion: true,
-    image: "https://i.pinimg.com/280x280_RS/84/5b/c9/845bc9561e2d6307ea177ce4168fa6bd.jpg",
+    image:
+      "https://i.pinimg.com/280x280_RS/84/5b/c9/845bc9561e2d6307ea177ce4168fa6bd.jpg",
     id: 1,
   },
   {
@@ -49,7 +50,8 @@ const data: EmployeeData[] = [
     email: "LondonJacks@gmail.com",
     phone: 375295654312,
     promotion: false,
-    image: "https://cdn.allfamous.org/people/avatars/jack-london-ewuj-allfamous.org.jpg",
+    image:
+      "https://cdn.allfamous.org/people/avatars/jack-london-ewuj-allfamous.org.jpg",
     id: 5,
   },
 ];

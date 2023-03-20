@@ -10,18 +10,9 @@ function App() {
       <div>
         <Header />
         <Routes>
-          <Route
-            path="/"
-            element={<Home />}
-          />
-          <Route
-            path="/about"
-            element={<AboutPage />}
-          />
-          <Route
-            path="*"
-            element={<NotFound />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

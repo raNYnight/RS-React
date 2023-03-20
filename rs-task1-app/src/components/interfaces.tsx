@@ -9,7 +9,9 @@ export interface EmployeeData {
   id: number;
 }
 
-export interface SearchPanelProps {}
+export interface SearchPanelProps {
+  value?: string;
+}
 
 export interface SearchPanelState {
   value: string;

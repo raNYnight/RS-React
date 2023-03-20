@@ -2,7 +2,7 @@ import "./search-panel.css";
 import { Component } from "react";
 import { SearchPanelProps, SearchPanelState } from "components/interfaces";
 
-class SearchPanel extends Component<{}, SearchPanelState> {
+class SearchPanel extends Component<object, SearchPanelState> {
   constructor(props: SearchPanelProps) {
     super(props);
     this.state = {
