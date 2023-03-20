@@ -1,18 +1,18 @@
-import "./search-panel.css";
-import { Component } from "react";
-import { SearchPanelProps, SearchPanelState } from "components/interfaces";
+import './search-panel.css';
+import { Component } from 'react';
+import { SearchPanelProps, SearchPanelState } from 'components/interfaces';
 
 class SearchPanel extends Component<object, SearchPanelState> {
   constructor(props: SearchPanelProps) {
     super(props);
     this.state = {
-      value: "",
+      value: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
-    const storedValue = window.localStorage.getItem("my-input-value");
+    const storedValue = window.localStorage.getItem('my-input-value');
     if (storedValue) {
       this.setState({ value: storedValue });
     }
@@ -21,7 +21,7 @@ class SearchPanel extends Component<object, SearchPanelState> {
   handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const inputValue = event.target.value;
     this.setState({ value: inputValue });
-    window.localStorage.setItem("my-input-value", inputValue);
+    window.localStorage.setItem('my-input-value', inputValue);
   }
 
   render = () => {
