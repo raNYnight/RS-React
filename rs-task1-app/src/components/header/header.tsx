@@ -1,39 +1,25 @@
-import React, { Component } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./header.css";
 
 function Header() {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleHomeClick = () => {
-    navigate("/");
-  };
-
-  const handleAboutClick = () => {
-    navigate("/about");
-  };
-
   return (
     <div className="header">
       <ul className="header-list">
         <li>
-          <button
+          <NavLink
             className="header-button"
-            onClick={handleHomeClick}
-            disabled={location.pathname === "/"}
+            to={"/"}
           >
             Home
-          </button>
+          </NavLink>
         </li>
         <li>
-          <button
+          <NavLink
             className="header-button"
-            onClick={handleAboutClick}
-            disabled={location.pathname === "/about"}
+            to={"/about"}
           >
             About Us
-          </button>
+          </NavLink>
         </li>
       </ul>
     </div>
