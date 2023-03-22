@@ -6,6 +6,7 @@ class EmployeesCard extends Component<EmployeesCardProps> {
   constructor(props: EmployeesCardProps) {
     super(props);
   }
+
   render(): ReactNode {
     let classes = 'employee-card';
     const { promotion, name, status, salary, email, phone, image, onDelete } = this.props;

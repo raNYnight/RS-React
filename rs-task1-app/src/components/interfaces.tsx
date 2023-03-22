@@ -28,3 +28,15 @@ export interface HomeProps {
 export interface HomeState {
   data: EmployeeData[];
 }
+
+export interface EmployersAddingProps {
+  handleGenderChange(newGender: string): void;
+}
+export interface EmployersAddingState {
+  gender: string;
+}
+
+export interface GenderSwitcherProps {
+  gender: string;
+  onChange: (gender: string) => void;
+}

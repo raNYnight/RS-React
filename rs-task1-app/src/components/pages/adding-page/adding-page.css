@@ -6,3 +6,74 @@
   box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
   color: #fff;
 }
+.adding-page h2{
+  text-align: center;
+}
+.add-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.field-block{
+  display: flex;
+  width: 400px;
+}
+.label-block{
+  width: 200px;
+}
+.title-select{
+  height: 25px;
+}
+input{
+  width: 181px;
+}
+#promotion-switch{
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+  flex-shrink: 0;
+  position: relative;
+  margin-right: 8px;
+}
+.gender-input{
+  width: fit-content;
+  margin: 0 10px 0 0;
+}
+.gender-label{
+margin-right: 10px;
+}
+.image-input{
+  opacity: 0;
+  width: 1px;
+}
+.image-label{
+  background-color: #fff;
+  color: #000;
+  border-radius: 3px;
+  padding: 2px 0 4px 4px;
+  cursor: pointer;
+}
+.image-label:hover{
+  border: 1px black;
+  border-style: dashed;
+  color: #535bf2;
+  transition: 0.3s;
+}
+.image-upload-block{
+  flex-direction: column;
+}
+.preview-block{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}
+.form-submit-btn{
+  padding: 5px;
+  font-size: 1em;
+}
