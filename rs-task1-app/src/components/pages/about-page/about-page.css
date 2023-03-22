@@ -1,6 +1,3 @@
-:root {
-  --transparent: rgb(196 196 196 / 0%);
-}
 #About {
   margin-top: 30px;
   padding: 25px;
@@ -44,20 +41,20 @@
   margin-left: 5px;
 }
 .telegram {
-  background: var(--transparent) url(../../assets/tg.svg) no-repeat center;
+  background: url(../../../assets/tg.svg) no-repeat center;
   background-size: contain;
 }
 .github {
-  background: var(--transparent) url(../../assets/github.svg) no-repeat center;
+  background: url(../../../assets/github.svg) no-repeat center;
   background-size: contain;
 }
 
 .discord {
-  background: var(--transparent) url(../../assets/discord.svg) no-repeat center;
+  background: url(../../../assets/discord.svg) no-repeat center;
   background-size: contain;
 }
 
 .inst {
-  background: var(--transparent) url(../../assets/inst.svg) no-repeat center;
+  background: url(../../../assets/inst.svg) no-repeat center;
   background-size: contain;
 }

@@ -1,9 +1,15 @@
 import EmployeesCard from '../employees-card/employees-card';
-
-import './employees-list.css';
 import { EmployeeData } from 'components/interfaces';
 
-const EmployeesList = ({ edata }: { edata: EmployeeData[] }) => {
+import './employees-list.css';
+
+const EmployeesList = ({
+  edata,
+  onDelete,
+}: {
+  edata: EmployeeData[];
+  onDelete: (id: number) => void;
+}) => {
   const elems = edata.map((item) => {
     const { id, ...itemProps } = item;
     return (
@@ -11,6 +17,7 @@ const EmployeesList = ({ edata }: { edata: EmployeeData[] }) => {
         key={id}
         id={id}
         {...itemProps}
+        onDelete={() => onDelete(id)}
       />
     );
   });

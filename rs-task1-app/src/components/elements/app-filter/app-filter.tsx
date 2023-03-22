@@ -3,6 +3,7 @@ import './app-filter.css';
 const AppFilter = () => {
   return (
     <div className="btn-group">
+      <span>Filter: </span>
       <button
         type="button"
         className="btn btn-light"

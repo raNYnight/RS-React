@@ -21,3 +21,18 @@ a {
 a:hover {
   color: #535bf2;
 }
+
+.not-found {
+  background-color: #322727;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+button {
+  border-radius: 2px;
+  border: none;
+}
+button:hover {
+  color: #535bf2;
+  transition: 0.3s;
+}
