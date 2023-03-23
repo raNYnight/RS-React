@@ -3,7 +3,7 @@ import Header from '../elements/header/header';
 import Home from '../pages/home/home';
 import AboutPage from '../pages/about-page/about-page';
 import NotFound from '../pages/not-found/not-found';
-import EmployersAddingPage from '../pages/adding-page/adding-page';
+import EmployeesAddingFormPage from '../pages/adding-page/adding-form-page';
 import { Component } from 'react';
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
             />
             <Route
               path="/addEmployee"
-              element={<EmployersAddingPage />}
+              element={<EmployeesAddingFormPage />}
             />
             <Route
               path="*"

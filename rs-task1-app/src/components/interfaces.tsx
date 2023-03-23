@@ -1,11 +1,24 @@
 export interface EmployeeData {
-  name: string;
+  name: string | null;
   status: string;
   salary: number;
   email: string;
   phone: number;
   promotion: boolean;
   image: string;
+  id: number;
+}
+
+export interface EmployeeData1 {
+  name: string;
+  workType: string;
+  email: string;
+  phone: string;
+  title: string;
+  salary: string;
+  date: string;
+  promotion: boolean;
+  imageURL: string;
   id: number;
 }
 
@@ -29,14 +42,25 @@ export interface HomeState {
   data: EmployeeData[];
 }
 
-export interface EmployersAddingProps {
-  handleGenderChange(newGender: string): void;
+export interface EmployeesAddingProps {
+  handleGenderChange?(newWorkType: string): void;
 }
-export interface EmployersAddingState {
-  gender: string;
+export interface EmployeesAddingState {
+  edata: EmployeeData1;
+  errors: {
+    name: string;
+    workType: string;
+    email: string;
+    phone: string;
+    title: string;
+    salary: string;
+    date: string;
+    imageURL: string;
+  };
 }
 
-export interface GenderSwitcherProps {
-  gender: string;
-  onChange: (gender: string) => void;
+export interface WorkTypeSwitcherProps {
+  workType: string;
+  error: string;
+  onChange: (workType: string) => void;
 }

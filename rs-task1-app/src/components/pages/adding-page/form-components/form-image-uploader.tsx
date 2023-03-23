@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 
 interface ImageUploaderProps {
-  onUpload: (file: File) => void;
+  onUpload: (url: string) => void;
+  error: string;
 }
 
 interface ImageUploaderState {
@@ -10,14 +11,20 @@ interface ImageUploaderState {
 }
 
 class ImageUploader extends Component<ImageUploaderProps, ImageUploaderState> {
+  uploadInputRef: React.RefObject<HTMLInputElement>;
+
   constructor(props: ImageUploaderProps) {
     super(props);
-
+    this.uploadInputRef = createRef();
     this.state = {
       file: null,
       imageUrl: null,
     };
   }
+
+  doSmth = () => {
+    console.log('smth');
+  };
 
   handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -35,7 +42,7 @@ class ImageUploader extends Component<ImageUploaderProps, ImageUploaderState> {
     reader.onload = () => {
       const imageUrl = reader.result as string;
       this.setState({ file, imageUrl });
-      this.props.onUpload(file);
+      this.props.onUpload(imageUrl);
     };
 
     reader.readAsDataURL(file);
@@ -43,7 +50,7 @@ class ImageUploader extends Component<ImageUploaderProps, ImageUploaderState> {
 
   render() {
     const { imageUrl } = this.state;
-
+    const { error } = this.props;
     return (
       <div className="field-block image-upload-block">
         <label
@@ -53,6 +60,7 @@ class ImageUploader extends Component<ImageUploaderProps, ImageUploaderState> {
           Choose employee photo:
         </label>
         <input
+          ref={this.uploadInputRef}
           id="image"
           className="image-input"
           type="file"
@@ -60,6 +68,7 @@ class ImageUploader extends Component<ImageUploaderProps, ImageUploaderState> {
           onChange={this.handleFileChange}
           accept="image/*"
         />
+        {error && <span className="error">{error}</span>}
         {imageUrl && (
           <div className="preview-block">
             <span className="peview-span">Preview:</span>

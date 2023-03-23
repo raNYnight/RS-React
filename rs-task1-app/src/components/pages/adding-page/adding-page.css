@@ -17,7 +17,7 @@
 }
 .field-block{
   display: flex;
-  width: 400px;
+  width: 700px;
 }
 .label-block{
   width: 200px;
@@ -39,11 +39,11 @@ input{
   position: relative;
   margin-right: 8px;
 }
-.gender-input{
+.work-type-label-input{
   width: fit-content;
   margin: 0 10px 0 0;
 }
-.gender-label{
+.work-type-label{
 margin-right: 10px;
 }
 .image-input{
@@ -64,7 +64,10 @@ margin-right: 10px;
   transition: 0.3s;
 }
 .image-upload-block{
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 300px;
+  align-self: flex-start;
 }
 .preview-block{
   display: flex;
@@ -76,4 +79,14 @@ margin-right: 10px;
 .form-submit-btn{
   padding: 5px;
   font-size: 1em;
+}
+.error{
+  height: 20px;
+  margin-left: 10px;
+  padding: 1px 3px 3px 3px;
+  border: red 1px solid;
+  background-color: #fff;
+  color: red;
+  transition: 0.5s;
+  font-size: 0.8em;
 }
