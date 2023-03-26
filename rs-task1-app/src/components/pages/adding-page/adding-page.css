@@ -47,8 +47,11 @@ input{
 margin-right: 10px;
 }
 .image-input{
-  opacity: 0;
-  width: 1px;
+    width: 255px;
+    position: absolute;
+    left: 89px;
+    top: 2px;
+    z-index: 1;
 }
 .image-label{
   background-color: #fff;
@@ -56,6 +59,7 @@ margin-right: 10px;
   border-radius: 3px;
   padding: 2px 0 4px 4px;
   cursor: pointer;
+  z-index: 2;
 }
 .image-label:hover{
   border: 1px black;
@@ -64,10 +68,8 @@ margin-right: 10px;
   transition: 0.3s;
 }
 .image-upload-block{
-  flex-direction: row;
   flex-wrap: wrap;
-  width: 300px;
-  align-self: flex-start;
+  position: relative;
 }
 .preview-block{
   display: flex;
@@ -89,4 +91,15 @@ margin-right: 10px;
   color: red;
   transition: 0.5s;
   font-size: 0.8em;
+}
+.image-error{
+  margin: 10px 0 0 0;
+}
+.add-list{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.image-upload-block .error{
+  margin-left: 140px;
 }

@@ -49,7 +49,6 @@ class ImageUploader extends Component<ImageUploaderProps, ImageUploaderState> {
   };
 
   render() {
-    const { imageUrl } = this.state;
     const { error } = this.props;
     return (
       <div className="field-block image-upload-block">
@@ -69,16 +68,6 @@ class ImageUploader extends Component<ImageUploaderProps, ImageUploaderState> {
           accept="image/*"
         />
         {error && <span className="error">{error}</span>}
-        {imageUrl && (
-          <div className="preview-block">
-            <span className="peview-span">Preview:</span>
-            <img
-              src={imageUrl}
-              alt="Uploaded image"
-              style={{ maxWidth: '100px', maxHeight: '100px', marginTop: '10px' }}
-            />
-          </div>
-        )}
       </div>
     );
   }

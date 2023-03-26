@@ -1,15 +1,4 @@
 export interface EmployeeData {
-  name: string | null;
-  status: string;
-  salary: number;
-  email: string;
-  phone: number;
-  promotion: boolean;
-  image: string;
-  id: number;
-}
-
-export interface EmployeeData1 {
   name: string;
   workType: string;
   email: string;
@@ -23,7 +12,7 @@ export interface EmployeeData1 {
 }
 
 export interface EmployeesCardProps extends EmployeeData {
-  onDelete: React.MouseEventHandler<HTMLButtonElement>;
+  onDelete?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface SearchPanelProps {
@@ -46,7 +35,8 @@ export interface EmployeesAddingProps {
   handleGenderChange?(newWorkType: string): void;
 }
 export interface EmployeesAddingState {
-  edata: EmployeeData1;
+  employees: EmployeeData[];
+  edata: EmployeeData;
   errors: {
     name: string;
     workType: string;

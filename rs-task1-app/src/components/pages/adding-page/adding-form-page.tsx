@@ -14,8 +14,11 @@ import FormSalary from './form-components/form-salary';
 import FormTitle from './form-components/form-title';
 import isValidName from './form-validation/name-validation';
 import isValidEmail from './form-validation/email-validation';
+import EmployeesCard from '../../elements/employees-card/employees-card';
 
 class EmployeesAddingFormPage extends Component<EmployeesAddingProps, EmployeesAddingState> {
+  formRef: React.RefObject<HTMLFormElement>;
+
   formNameRef: React.RefObject<FormName>;
 
   formWorkTypeRef: React.RefObject<FormWorkTypeSwitcher>;
@@ -45,7 +48,9 @@ class EmployeesAddingFormPage extends Component<EmployeesAddingProps, EmployeesA
     this.formDateRef = createRef();
     this.formPromotionRef = createRef();
     this.formUploadtRef = createRef();
+    this.formRef = React.createRef();
     this.state = {
+      employees: [],
       edata: {
         name: '',
         workType: '',
@@ -103,50 +108,91 @@ class EmployeesAddingFormPage extends Component<EmployeesAddingProps, EmployeesA
     });
   };
 
-  handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // prevent default form submission
-    // your custom logic here
+  setEdataState = async () =>
+    this.setState({
+      edata: {
+        ...this.state.edata,
+        name: this.formNameRef.current?.nameInputRef.current?.value ?? '',
+        workType: !this.state.edata.workType ? '' : this.state.edata.workType,
+        email: this.formEmailRef.current?.emailInputRef.current?.value ?? '',
+        phone: this.formPhoneRef.current?.phoneInputRef.current?.value ?? '',
+        title: this.formTitleRef.current?.titleInputRef.current?.value ?? 'Select position',
+        salary: this.formSalaryRef.current?.salaryInputRef.current?.value ?? '',
+        date: this.formDateRef.current?.dateInputRef.current?.value ?? '',
+        promotion: this.formPromotionRef.current?.promotionInputRef.current?.checked ? true : false,
+        // imageURL: this.formUploadtRef.current?.uploadInputRef.current?.value ?? '',
+        id: +nextId().slice(2),
+      },
+    });
+
+  setErorrState = async () =>
+    this.setState({
+      errors: {
+        name: isValidName(this.state.edata.name) ? '' : 'Invalid name',
+        email: isValidEmail(this.state.edata.email) ? '' : 'Invalid email',
+        workType: !this.state.edata.workType ? 'Select work type' : '',
+        phone:
+          this.state.edata.phone.length > 11 ? '' : 'Invalid phone (should be atleast 12 numbers)',
+        salary: this.state.edata.salary.length > 0 ? '' : 'Invalid salary',
+        title: this.state.edata.title === 'Select position' ? 'Select title' : '',
+        date: this.state.edata.date ? '' : 'Select date',
+        imageURL: this.state.edata.imageURL ? '' : 'Select image',
+      },
+    });
+
+  resetForm = () => {
+    this.setState({
+      edata: {
+        name: '',
+        workType: '',
+        email: '',
+        phone: '',
+        title: '',
+        salary: '',
+        date: '',
+        promotion: false,
+        imageURL: '',
+        id: +nextId().slice(2),
+      },
+      errors: {
+        name: '',
+        workType: '',
+        email: '',
+        phone: '',
+        title: '',
+        salary: '',
+        date: '',
+        imageURL: '',
+      },
+    });
+    this.formRef.current?.reset();
   };
 
-  handleBtnClick = () => {
-    console.log(!this.state.edata.workType);
-    this.setState(
-      {
-        edata: {
-          name: this.formNameRef.current?.nameInputRef.current?.value ?? '',
-          workType: !this.state.edata.workType ? '' : this.state.edata.workType,
-          email: this.formEmailRef.current?.emailInputRef.current?.value ?? '',
-          phone: this.formPhoneRef.current?.phoneInputRef.current?.value ?? '',
-          title: this.formTitleRef.current?.titleInputRef.current?.value ?? 'Select position',
-          salary: this.formSalaryRef.current?.salaryInputRef.current?.value ?? '',
-          date: this.formDateRef.current?.dateInputRef.current?.value ?? '',
-          promotion: this.formPromotionRef.current?.promotionInputRef.current?.checked
-            ? true
-            : false,
-          imageURL: this.formUploadtRef.current?.uploadInputRef.current?.value ?? '',
-          id: +nextId().slice(2),
-        },
-      },
-      () => {
-        this.setState({
-          errors: {
-            name: isValidName(this.state.edata.name) ? '' : 'Invalid name',
-            email: isValidEmail(this.state.edata.email) ? '' : 'Invalid email',
-            workType: !this.state.edata.workType ? 'Select work type' : '',
-            phone:
-              this.state.edata.phone.length > 11
-                ? ''
-                : 'Invalid phone (should be atleast 12 numbers)',
-            salary: this.state.edata.salary.length > 0 ? '' : 'Invalid salary',
-            title: this.state.edata.title === 'Select position' ? 'Select title' : '',
-            date: this.state.edata.date ? '' : 'Select date',
-            imageURL: this.state.edata.imageURL ? '' : 'Select image',
-          },
-        });
-      }
-    );
+  handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await this.setEdataState();
+    await this.setErorrState();
+    if (Object.values(this.state.errors).every((val) => val === '')) {
+      this.resetForm();
+      this.setState(
+        (prevState) => ({
+          employees: [...prevState.employees, this.state.edata],
+        }),
+        () => {
+          localStorage.setItem('addedData', JSON.stringify(this.state.employees));
+        }
+      );
+    }
+  };
 
-    console.log(this.state.edata);
+  deleteItem = (id: number) => {
+    this.setState(({ employees }) => {
+      const newData = employees.filter((item) => item.id !== id);
+      localStorage.setItem('addedData', JSON.stringify(newData));
+      return {
+        employees: newData,
+      };
+    });
   };
 
   render(): ReactNode {
@@ -155,6 +201,7 @@ class EmployeesAddingFormPage extends Component<EmployeesAddingProps, EmployeesA
       <div className="adding-page">
         <h2>Add new employee</h2>
         <form
+          ref={this.formRef}
           action=""
           onSubmit={this.handleSubmit}
           className="add-form"
@@ -198,11 +245,23 @@ class EmployeesAddingFormPage extends Component<EmployeesAddingProps, EmployeesA
           <button
             type="submit"
             className="btn form-submit-btn"
-            onClick={this.handleBtnClick}
           >
             Add new employee
           </button>
         </form>
+        <div className="add-list">
+          {this.state.employees.map((employee) => {
+            const { id, ...itemProps } = employee;
+            return (
+              <EmployeesCard
+                key={id}
+                id={id}
+                onDelete={() => this.deleteItem(id)}
+                {...itemProps}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }

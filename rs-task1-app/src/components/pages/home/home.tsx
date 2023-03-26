@@ -8,10 +8,25 @@ import { HomeProps, HomeState } from '../../interfaces';
 class Home extends Component<HomeProps, HomeState> {
   constructor(props: HomeProps) {
     super(props);
-    const storedData = localStorage.getItem('homeData');
+    const homeData = localStorage.getItem('homeData');
+    const addedData = localStorage.getItem('addedData');
     this.state = {
-      data: storedData ? JSON.parse(storedData) : [...data],
+      data: [...data],
     };
+    if (homeData) {
+      const parsedData = JSON.parse(homeData);
+      if (addedData) {
+        const parsedAddedData = JSON.parse(addedData);
+        parsedData.push(...parsedAddedData);
+      }
+      this.state = {
+        data: parsedData,
+      };
+    } else if (addedData) {
+      this.state = {
+        data: JSON.parse(addedData),
+      };
+    }
   }
 
   deleteItem = (id: number) => {
@@ -26,6 +41,7 @@ class Home extends Component<HomeProps, HomeState> {
 
   componentWillUnmount() {
     localStorage.setItem('homeData', JSON.stringify(this.state.data));
+    localStorage.removeItem('addedData');
   }
 
   render(): ReactNode {
