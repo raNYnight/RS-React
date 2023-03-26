@@ -21,6 +21,9 @@ function Header() {
             About Us
           </NavLink>
         </li>
+        <li>
+          <NavLink to={'/addEmployee'}>Add new employee</NavLink>
+        </li>
       </ul>
     </div>
   );

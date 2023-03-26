@@ -35,7 +35,6 @@ class SearchPanel extends Component<object, SearchPanelState> {
           className="form-control search-input"
           placeholder="Find employee"
         />
-        <NavLink to={'/addEmployee'}>Add new employee</NavLink>
       </div>
     );
   };
