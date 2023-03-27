@@ -1,7 +1,6 @@
 import './search-panel.css';
 import { Component } from 'react';
 import { SearchPanelProps, SearchPanelState } from 'components/interfaces';
-import { NavLink } from 'react-router-dom';
 
 class SearchPanel extends Component<object, SearchPanelState> {
   constructor(props: SearchPanelProps) {
