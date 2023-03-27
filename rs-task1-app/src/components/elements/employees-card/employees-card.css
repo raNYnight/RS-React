@@ -1,0 +1,19 @@
+.employee-card {
+  padding: 5px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: solid 1px black;
+}
+
+.employee-name {
+  font: 1.5em sans-serif;
+}
+.employee-status {
+  font: 1em sans-serif;
+}
+.promoted {
+  border: #f8d52d 2px solid;
+}
