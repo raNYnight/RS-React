@@ -12,7 +12,7 @@ export interface EmployeeData {
 }
 
 export interface EmployeesCardProps extends EmployeeData {
-  onDelete?: React.MouseEventHandler<HTMLButtonElement>;
+  onDelete: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface SearchPanelProps {

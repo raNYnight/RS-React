@@ -1,7 +1,7 @@
 import { EmployeeData } from 'components/interfaces';
 import nextId from 'react-id-generator';
 
-const data: EmployeeData[] = [
+const defaultData: EmployeeData[] = [
   {
     name: 'Johny Smith',
     workType: 'On-site',
@@ -51,4 +51,4 @@ const data: EmployeeData[] = [
     id: +nextId().slice(2),
   },
 ];
-export default data;
+export default defaultData;
