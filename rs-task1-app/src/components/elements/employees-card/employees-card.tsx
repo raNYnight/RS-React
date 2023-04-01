@@ -1,10 +1,11 @@
-import { EmployeesCardProps } from 'components/interfaces';
-
+import { EmployeeData } from 'components/interfaces';
 import './employees-card.css';
 
+export interface EmployeesCardProps extends EmployeeData {
+  onDelete: React.MouseEventHandler<HTMLButtonElement>;
+}
 function EmployeesCard(props: EmployeesCardProps) {
-  const { name, workType, email, phone, title, salary, date, promotion, imageURL, onDelete } =
-    props;
+  const { name, worktype, email, phone, title, salary, date, promotion, image, onDelete } = props;
   let classes = 'employee-card';
   if (promotion) classes += ' promoted';
 
@@ -12,13 +13,13 @@ function EmployeesCard(props: EmployeesCardProps) {
     <li className={classes}>
       <span className="employee-name">{name}</span>
       <img
-        src={imageURL}
+        src={image as string}
         alt="img"
         width={100 + 'px'}
         height={100 + 'px'}
       />
       <span className="employee-title">{title}</span>
-      <span className="employee-work-type">{workType}</span>
+      <span className="employee-work-type">{worktype}</span>
       <span className="employee-salary">{salary}$</span>
       <span className="employee-date">{date} </span>
       <span className="employee-email">{email}</span>

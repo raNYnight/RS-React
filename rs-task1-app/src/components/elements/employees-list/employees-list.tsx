@@ -3,13 +3,12 @@ import { EmployeeData } from 'components/interfaces';
 
 import './employees-list.css';
 
-const EmployeesList = ({
-  edata,
-  onDelete,
-}: {
+type EmployeesListProps = {
   edata: EmployeeData[];
   onDelete: (id: number) => void;
-}) => {
+};
+
+const EmployeesList = ({ edata, onDelete }: EmployeesListProps) => {
   const elems = edata.map((item) => {
     const { id, ...itemProps } = item;
     return (
@@ -17,7 +16,7 @@ const EmployeesList = ({
         key={id}
         id={id}
         {...itemProps}
-        onDelete={() => onDelete(id)}
+        onDelete={() => onDelete(id!)}
       />
     );
   });
