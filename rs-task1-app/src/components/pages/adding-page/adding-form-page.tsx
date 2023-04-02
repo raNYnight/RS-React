@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import FormComponent from './form';
+import FormComponent from './form/form';
 import EmployeesList from '../../elements/employees-list/employees-list';
 import { EmployeeData } from '../../interfaces';
 

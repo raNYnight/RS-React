@@ -2,10 +2,10 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import nextId from 'react-id-generator';
-import isValidEmail from './form-validation/email-validation';
-import isValidName from './form-validation/name-validation';
+import isValidEmail from '../form-validation/email-validation';
+import isValidName from '../form-validation/name-validation';
 import { EmployeeData } from 'components/interfaces';
-import Confirmation from './confirmation/confirmation';
+import Confirmation from '../confirmation/confirmation';
 
 const FormComponent = ({ onEmployeeAdd }: { onEmployeeAdd: (employee: EmployeeData) => void }) => {
   const {
