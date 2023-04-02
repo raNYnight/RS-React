@@ -1,41 +1,33 @@
 import './search-panel.css';
-import { Component } from 'react';
-import { SearchPanelProps, SearchPanelState } from 'components/interfaces';
+import { useState, useEffect } from 'react';
 
-class SearchPanel extends Component<object, SearchPanelState> {
-  constructor(props: SearchPanelProps) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
+const SearchPanel = () => {
+  const [value, setValue] = useState('');
 
-  componentDidMount() {
+  useEffect(() => {
     const storedValue = window.localStorage.getItem('my-input-value');
     if (storedValue) {
-      this.setState({ value: storedValue });
+      setValue(storedValue);
     }
-  }
+  }, []);
 
-  handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    this.setState({ value: inputValue });
+    setValue(inputValue);
     window.localStorage.setItem('my-input-value', inputValue);
-  }
-
-  render = () => {
-    return (
-      <div className="search-container">
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.handleInputChange}
-          className="form-control search-input"
-          placeholder="Find employee"
-        />
-      </div>
-    );
   };
-}
+
+  return (
+    <div className="search-container">
+      <input
+        type="text"
+        value={value}
+        onChange={handleInputChange}
+        className="form-control search-input"
+        placeholder="Find employee"
+      />
+    </div>
+  );
+};
+
 export default SearchPanel;
