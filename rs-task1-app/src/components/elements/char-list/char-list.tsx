@@ -2,13 +2,15 @@ import Spinner from '../../spinner/spinner';
 import { Component, ReactNode } from 'react';
 import CharacterService, { Character } from '../../../services/characters';
 import ErrorMessage from '../erorr/error';
-
+import CharModal from '../char-modal/char-modal';
 import './char-list.css';
 
 interface CharListState {
   charList: Character[];
   loading: boolean;
   error: boolean;
+  isModalOpen: boolean;
+  selectedChar: Character | null;
 }
 interface CharListProps {
   searchValue: string;
@@ -21,6 +23,8 @@ class CharList extends Component<CharListProps, CharListState> {
       charList: [],
       loading: true,
       error: false,
+      isModalOpen: false,
+      selectedChar: null,
     };
   }
 
@@ -62,6 +66,23 @@ class CharList extends Component<CharListProps, CharListState> {
     window.localStorage.setItem('searched-chars', '');
   };
 
+  handleCharClick = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    console.log('select');
+    const charId = parseInt(event.currentTarget.getAttribute('data-id') || '0');
+    const selectedChar = this.state.charList.find((char) => char.id === charId);
+    this.setState({
+      isModalOpen: true,
+      selectedChar: selectedChar!,
+    });
+  };
+
+  handleCloseModal = () => {
+    this.setState({
+      isModalOpen: false,
+      selectedChar: null,
+    });
+  };
+
   render(): ReactNode {
     const { charList, loading, error } = this.state;
 
@@ -70,7 +91,8 @@ class CharList extends Component<CharListProps, CharListState> {
         <li
           className="char-item"
           key={item.id}
-          //   onClick={() => this.props.onCharSelected(item.id)}
+          onClick={this.handleCharClick}
+          data-id={item.id}
         >
           <div className="char-name">{item.name}</div>
           <img
@@ -90,6 +112,12 @@ class CharList extends Component<CharListProps, CharListState> {
         {errorMessage}
         {spinner}
         {content}
+        {this.state.selectedChar && (
+          <CharModal
+            character={this.state.selectedChar}
+            onClose={this.handleCloseModal}
+          />
+        )}
       </div>
     );
   }
