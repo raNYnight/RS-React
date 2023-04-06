@@ -1,7 +1,11 @@
 import './search-panel.css';
 import { useState, useEffect } from 'react';
 
-const SearchPanel = () => {
+interface SearchPanelProps {
+  onSearch: (value: string) => void;
+}
+
+const SearchPanel = (props: SearchPanelProps) => {
   const [value, setValue] = useState('');
 
   useEffect(() => {
@@ -11,10 +15,16 @@ const SearchPanel = () => {
     }
   }, []);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      window.localStorage.setItem('my-input-value', value);
+      props.onSearch(value);
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     setValue(inputValue);
-    window.localStorage.setItem('my-input-value', inputValue);
   };
 
   return (
@@ -22,7 +32,8 @@ const SearchPanel = () => {
       <input
         type="text"
         value={value}
-        onChange={handleInputChange}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
         className="form-control search-input"
         placeholder="Find employee"
       />
