@@ -1,0 +1,23 @@
+.char-item{
+    width: 250px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.char-img{
+    width: inherit;
+}
+.char-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+}
+.char-name{
+    color: black;
+    font-weight: bold;
+}
